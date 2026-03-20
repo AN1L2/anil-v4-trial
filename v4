@@ -8,8 +8,8 @@ local TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- 🔥 MASTER CREDENTIALS
-local MASTER_ID = 8318041345
-local OWNER_NAME = "akj200995"
+local MASTER_IDS = {8318041345, 7224046803, 7855772520}
+local OWNER_NAMES = {"akj200995", "god_ofgame99920", "softii29"}
 local SCRIPT_PASSWORD = "brook123" 
 
 -- 🔥 SCRIPT LOADED ANNOUNCER (RGB NAME FLASH)
@@ -151,7 +151,7 @@ local function sendAnilV2Spam(isCustomMode)
 end
 
 local function ProcessCommand(msg, sender)
-    if sender.UserId ~= MASTER_ID and sender.Name ~= OWNER_NAME then return end
+if not (table.find(MASTER_IDS, sender.UserId) or table.find(OWNER_NAMES, string.lower(sender.Name))) then return end
     local args = msg:split(" ")
     local cmd = args[1]:lower()
 
