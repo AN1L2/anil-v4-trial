@@ -10,30 +10,82 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- 🔥 MASTER CREDENTIALS
 local MASTER_ID = 8318041345
 local OWNER_NAME = "akj200995"
-local SCRIPT_PASSWORD = "ANIL@123" 
+local SCRIPT_PASSWORD = "brook123" 
 
 -- 🔥 SCRIPT LOADED ANNOUNCER (RGB NAME FLASH)
-local ANNOUNCER_MSG = "🚀ANIL,RUDY,SAI,AYU PAPA KO NAMASTE 🔥"
+local ANNOUNCER_MSG = "!!!!!!!!!!!!!!Welcome anil spam user 🚀ANIL,RUDY,SAI,AYU PAPA KO NAMASTE 🔥!!!!!!!!!!!!!!!!!!!!!!!"
+
+-- 🌚 CUSTOM FONT (VOID)
+local fonts = {
+    ["Pookie"] = {
+        name = "🎀 Pookie",
+        text = "[NAME]",
+        map = {
+            A = "ⓐ", B = "ⓑ", C = "ⓒ", D = "ⓓ", 
+            E = "ⓔ", F = "ⓕ", G = "ⓖ", H = "ⓗ", 
+            I = "ⓘ", J = "ⓙ", K = "ⓚ", L = "ⓛ", 
+            M = "ⓜ", N = "ⓝ", O = "ⓞ", P = "ⓟ", 
+            Q = "ⓠ", R = "ⓡ", S = "ⓢ", T = "ⓣ", 
+            U = "ⓤ", V = "ⓥ", W = "ⓦ", X = "ⓧ", 
+            Y = "ⓨ", Z = "ⓩ"
+        },
+    }
+}
+
+local function applyFont(str, fontName)
+    local font = fonts[fontName]
+    if not font then return str end
+
+    local map = font.map
+    local upperStr = string.upper(str)
+
+    local out = ""
+    for i = 1, #upperStr do
+        local char = string.sub(upperStr, i, i)
+        out = out .. (map[char] or char)
+    end
+
+    return out
+end
+
 task.spawn(function()
+    -- first show "ANIL SPAM STARTED!"
     pcall(function()
         ReplicatedStorage.RE["1RPNam1eTex1t"]:FireServer("RolePlayName", "ANIL SPAM STARTED!")
     end)
-    task.spawn(function()
-        for i = 1, 50 do
-            local c = Color3.fromHSV((tick() % 5) / 5, 1, 1)
-            pcall(function() ReplicatedStorage.RE["1RPNam1eColo1r"]:FireServer("PickingRPNameColor", c) end)
-            task.wait(0.1)
-        end
-        pcall(function() ReplicatedStorage.RE["1RPNam1eTex1t"]:FireServer("RolePlayName", Players.LocalPlayer.Name) end)
-    end)
-    task.wait(2)
-    pcall(function()
-        if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
-            TextChatService.TextChannels.RBXGeneral:SendAsync("🎖️ " .. ANNOUNCER_MSG)
-        else
-            ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("🎖️ " .. ANNOUNCER_MSG, "All")
-        end
-    end)
+
+    -- rainbow on name for about 5 seconds
+    for i = 1, 50 do
+        local c = Color3.fromHSV((tick() % 5) / 5, 1, 1)
+        pcall(function() ReplicatedStorage.RE["1RPNam1eColo1r"]:FireServer("PickingRPNameColor", c) end)
+        task.wait(0.1)
+    end
+
+
+  -- convert your name to Pookie font, then send it
+local myName = Players.LocalPlayer.DisplayName
+local pookieName = applyFont(myName, "Pookie")
+
+pcall(function()
+    ReplicatedStorage.RE["1RPNam1eTex1t"]:FireServer("RolePlayName", pookieName)
+end)
+
+
+    -- KEEP IT RAINBOW FOREVER (inside this same task)
+    while true do
+        local c = Color3.fromHSV((tick() % 5) / 5, 1, 1)
+        pcall(function() ReplicatedStorage.RE["1RPNam1eColo1r"]:FireServer("PickingRPNameColor", c) end)
+        task.wait(0.1)
+    end
+end)
+
+task.wait(2)
+pcall(function()
+    if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        TextChatService.TextChannels.RBXGeneral:SendAsync("🎖️ " .. ANNOUNCER_MSG)
+    else
+        ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("🎖️ " .. ANNOUNCER_MSG, "All")
+    end
 end)
 
 -- 🛠️ ENGINE VARIABLES
@@ -44,13 +96,13 @@ local index = 1
 local waitTime = 1
 local spamActive = false
 local spamTarget = ""
-local phrases = {"tmx meh king🥰 ","tmx meh GEN-Z🤖 ","tmx meh master🤭 ","tmx meh rp🧸 ","tmx meh gama🧯","tmx meh soul","tmx meh shasdow🩸","ANIL PAPA BOL"}
+local phrases = {"tmx meh king🥰 ","tmx meh GEN-Z🤖 ","tmx meh master🤭 ","tmx meh atomic🧸 ","tmx meh gama🧯","tmx meh soul","tmx meh shasdow🩸","ANIL PAPA BOL"}
 local patterns = {"!~","`~","@#"}
 local patternIndex = 1
 local adminLocked = false -- Add this line here
 
 -- 🛡️ PROTECTION LOGIC
-local protectedNames = {"ANIL", "AYU", "RUDY", "SAI", "anil", "AYN1L", "An1l", "@yu", "S1i", "akj200995","Jamal","Mickey"}
+local protectedNames = {"ANIL", "AYU", "RUDY", "SAI", "anil", "AYN1L", "An1l", "@yu", "S1i", "akj200995","@yu","Ayu","Rudy"}
 
 local function isProtected(name)
     if not name or name == "" then return false end
@@ -423,18 +475,21 @@ end -- closes CreateLockedScriptBtn
 
 -- 🔓 PUBLIC (EVERYONE)
 CreateScriptBtn("ANIL YIELD", "https://raw.githubusercontent.com/AN1L2/ANILYIELD/refs/heads/main/YIELD.LUA")
-CreateScriptBtn("REDZ HUB", "https://raw.githubusercontent.com/REDZHUB/REDZHUB/main/REDZHUB")
-CreateScriptBtn("ANIL EMOTE", "https://raw.githubusercontent.com/AN1L2/ANILGAZE/refs/heads/main/anil.emote")
-CreateScriptBtn("MIKEY CHAT", "https://raw.githubusercontent.com/Gaurav-0196/Mickey-Chat/refs/heads/main/MickeyChat")
-CreateScriptBtn("MIKEY MUSIC", "https://raw.githubusercontent.com/Gaurav-0196/Mickey-Aud/refs/heads/main/MickeyMusic")
-CreateScriptBtn("AVATOR COPY", "https://raw.githubusercontent.com/Gaurav-0196/MickeyAvatar/refs/heads/main/MickeyAvatar")
+CreateScriptBtn("Anil font", "https://raw.githubusercontent.com/AN1L2/anilfontob/refs/heads/main/anifontob")
+CreateScriptBtn("Anil sky", "https://raw.githubusercontent.com/AN1L2/skydeob/refs/heads/main/deob%20sky")
+CreateScriptBtn("Props fly", "https://raw.githubusercontent.com/Goku55050/Ares-roblox/refs/heads/main/aresorbita.lua")
+CreateScriptBtn("Gaze Emote", "https://raw.githubusercontent.com/Gazer-Ha/Gaze-stuff/refs/heads/main/Gaze%20emote")
+CreateScriptBtn("HUB", "https://raw.githubusercontent.com/Cat558-uz/Coquette-/refs/heads/main/coquettee.txt")
+CreateScriptBtn("Mickey CHAT", "https://raw.githubusercontent.com/Gaurav-0196/Mickey-Chat/refs/heads/main/MickeyChat")
+CreateScriptBtn("Ares chat", "https://raw.githubusercontent.com/Goku55050/Ares-roblox/refs/heads/main/areschat.lua")
+CreateScriptBtn("Ares music", "https://raw.githubusercontent.com/Goku55050/Ares-roblox/refs/heads/main/aresmusic.lua")
 
 
 
 -- 🔒 PRIVATE (PASSWORD REQUIRED)
 CreateLockedScriptBtn(
 "PRIVATE TOOL 1",
-"https://github.com/contateste8/OaOaOaOa-EbEbEbEb/raw/refs/heads/main/ChachadoHubObf.txt"
+"https://raw.githubusercontent.com/Goku55050/Ares-roblox/refs/heads/main/areschat.lua"
 )
 
 
